@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  // COLORS
+  --white: #ffffff;
+  --black: #333333;
+  --orange: #ff8659;
+  --red: #ff4a4a;
+  --light-yellow: #ffe278;
+  --dark-wellow: #ffb454;
+}
+
+body > * {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+  font-kerning: normal;
+}
+
+body {
+  background-color: var(--white);
+}
+
+body,
+input,
+button {
+  font: 16px Montserrat, sans-serif;
+  color: var(--black-secondary);
+}
+
+button {
+  cursor: pointer;
+}
