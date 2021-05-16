@@ -99,11 +99,12 @@
 
       &::-webkit-scrollbar {
         background: transparent;
-        width: 5px;
+        width: 6px;
+        height: 6px;
       }
 
       &::-webkit-scrollbar-track {
-        margin: 4px 10px;
+        margin: 4px 10px 14px;
       }
 
       &::-webkit-scrollbar-thumb {
