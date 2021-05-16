@@ -7,7 +7,7 @@ import styles from '../styles/pages/Home.module.scss'
 import { RiMouseLine } from "react-icons/ri";
 
 // HOOKS
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useMemo} from 'react'
 
 // REQUEST
 import { api, apiKey } from '../services/api'
@@ -17,9 +17,11 @@ import { handleDate } from '../utils/handleDate'
 
 const Home = () => {
   const [asteroidsArray, setAsteroidsArray] =useState([])
+  const [searchName, setSearchName] = useState("")
 
   useEffect(() => {
-    getNasaApi()
+    const { startDate, endDate } = handleDate()
+    getNasaApi(startDate, endDate)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -35,16 +37,19 @@ const Home = () => {
     setAsteroidsArray(mergeAsteroids.reverse())
   }
 
-  const getNasaApi = async() => {
-    const { startDate, endDate } = handleDate()
-
+  const getNasaApi = async(startDate, endDate) => {
     await api
-      .get(`feed?start_date=${endDate}&end_date=${startDate}&api_key=${apiKey}`)
+      .get(`feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
       .then((response) => {
+        console.log(response)
         mergeAsteroidsByMultipleDays(response.data.near_earth_objects)
       })
       .catch((error) => console.log(error))
   }
+
+  // console.log(asteroidsArray[0].estimated_diameter.meters.estimated_diameter_max.substring(0, 1))
+  // console.log(asteroidsArray[0])
+  console.log(searchName)
 
   return (
     <>
@@ -53,43 +58,54 @@ const Home = () => {
         {asteroidsArray && asteroidsArray.length ? (
           <div className={styles.listingContainer}>
             <h1>Asteroides mais recentes</h1>
+            <div className={styles.filterContainer}>
+              <input type="text" value={searchName} onChange={(event) => setSearchName(event.target.value) }/>
+            </div>
             <div className={styles.tableContainer}>
               <RiMouseLine />
               <table cellSpacing="0">
                 <thead>
                   <tr>
                     <th rowSpan="2">Nome</th>
-                    <th colSpan="2">Diametro estimado(km)</th>
+                    <th colSpan="2">Diametro estimado (km)</th>
                     <th rowSpan="2">Distancia da Terra</th>
                     <th></th>
                   </tr>
                   <tr>
                   </tr>
                   <tr>
-                    <th></th>
+                    <th>
+                      <span>Encontrados: <strong>{asteroidsArray.length} </strong></span>
+                    </th>
                     <th>Min</th>
                     <th>Max</th>
                     <th colSpan="2"></th>
                   </tr>
                 </thead>
-                <tbody className={styles.tBody}>
+                <tbody>
                 {asteroidsArray.map((obj, index) => {
                   return (
                       <tr key={index}>
-                        <td><p>{obj.name}</p></td>
                         <td>
-                            <span>
-                              {obj.estimated_diameter.kilometers.estimated_diameter_min} km
-                            </span>
+                          <p>
+                            {obj.name.substring(0, 1) === "(" ? obj.name.slice(1, -1) : obj.name}
+                          </p>
                         </td>
                         <td>
-                            <span>
-                              {obj.estimated_diameter.kilometers.estimated_diameter_max} km
-                            </span>
+                          <span>
+                            {obj.estimated_diameter.meters.estimated_diameter_min}
+                          </span>
                         </td>
-                        <td><p>{obj.close_approach_data[0].miss_distance.kilometers}</p></td>
+                        <td>
+                          <span>
+                            {obj.estimated_diameter.meters.estimated_diameter_max}
+                          </span>
+                        </td>
+                        <td>
+                          <p>{obj.close_approach_data[0].miss_distance.kilometers} <strong>Km</strong></p>
+                        </td>
                         <td>{ obj.is_potentially_hazardous_asteroid && <img src="icons/warn.svg" alt="Asteroide perigoso" />}</td>
-                      </tr>
+                    </tr>
                   )
                 })}
                 </tbody>

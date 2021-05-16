@@ -8,7 +8,6 @@
 }
 
 .contentContainer {
-  height: 100%;
   margin: 0 auto;
   padding: 2rem;
 
@@ -55,6 +54,18 @@
           font-size: 1.4rem;
         }
       }
+
+      tr:last-child span{
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        color: var(--gray);
+
+        strong {
+          color: var(--red);
+          font-size: 1.6rem;
+          margin-left: .2rem;
+        }
+      }
     }
   
     tbody {
@@ -94,6 +105,10 @@
         img {
           height: 1.6rem;
           width: 1.6rem;
+        }
+
+        strong {
+          color: var(--red);
         }
       }
 
