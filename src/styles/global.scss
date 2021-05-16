@@ -1,19 +1,20 @@
 * {
   margin: 0;
   padding: 0;
-  outline: 0;
+  outline: 0 none;
   box-sizing: border-box;
 }
 
 html {
   font-size: 10px;
+  overflow: hidden;
 }
 
 :root {
   // COLORS
   --white: #ffffff;
   --gray: #808080;
-  --light-gray: #1b1b1b;
+  --dark-gray: #1b1b1b;
   --light-black: rgb(42, 42, 42);
   --black: #393939;
   --dark-black: #222222;
