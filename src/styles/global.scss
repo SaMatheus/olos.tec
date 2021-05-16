@@ -7,7 +7,26 @@
 
 html {
   font-size: 10px;
-  overflow: hidden;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 4px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 4px 10px 14px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }
 
 :root {
