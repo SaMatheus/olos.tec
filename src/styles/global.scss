@@ -12,7 +12,12 @@ html {
 :root {
   // COLORS
   --white: #ffffff;
-  --black: #333333;
+  --gray: #808080;
+  --light-gray: #1b1b1b;
+  --light-black: rgb(42, 42, 42);
+  --black: #393939;
+  --dark-black: #222222;
+  --background: #333333;
   --orange: #ff8659;
   --red: #ff4a4a;
   --light-yellow: #ffe278;
@@ -27,7 +32,7 @@ body > * {
 }
 
 body {
-  background-color: var(--white);
+  background-color: var(--background);
 }
 
 body,
