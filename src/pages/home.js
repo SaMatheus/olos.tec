@@ -25,6 +25,7 @@ const Home = () => {
   const [searchName, setSearchName] = useState('')
   const [initialDate, setInitialDate] = useState('')
   const [finalDate, setFinalDate] = useState('')
+  const [isHazardousTextIndex, setIsHazardousTextIndex] = useState(null)
 
   let maxFinalDateRange = initialDate && `${initialDate.slice(0, 8)}${Number(initialDate.slice(-2)) + 6}`
 
@@ -80,7 +81,6 @@ const Home = () => {
           <div>
             <div className={styles.headerContainer}>
               <div className={styles.presentationContainer}>
-
                 <img className={styles.earth} src="icons/earth.png" alt="" />
                 <img className={styles.logo} src="icons/logo.png" alt="" />
 
@@ -166,7 +166,25 @@ const Home = () => {
                         <td>
                           <p>{obj.close_approach_data[0].miss_distance.kilometers} <strong>Km</strong></p>
                         </td>
-                        <td>{ obj.is_potentially_hazardous_asteroid && <img src="icons/warn.svg" alt="Asteroide perigoso" />}</td>
+                        <td>
+                        { obj.is_potentially_hazardous_asteroid && ( 
+                          <div 
+                          onMouseEnter={() => setIsHazardousTextIndex(index)} 
+                          onMouseLeave={() => setIsHazardousTextIndex(null)} >
+                            <img 
+                              src="icons/warn.svg" 
+                              alt="Asteroide perigoso" 
+                            />
+                            {isHazardousTextIndex === index && 
+                            <div className={styles.hazardousText}>
+                              <p>
+                                Esse asteroide é potencialmente um perigo para a terra!
+                                <img src="icons/scared.png" alt="Medo" />
+                              </p>
+                            </div>}
+                          </div>
+                        )}
+                        </td>
                     </tr>
                   )
                 })}

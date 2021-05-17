@@ -45,6 +45,7 @@
   .star {
     z-index: -1;
     position: absolute;
+    opacity: 0.7;
   }
 
   .star1 {
@@ -109,7 +110,7 @@
       }
       50% {
         opacity: 0;
-        transform: translate(50rem, 25rem) rotate(10deg);
+        transform: translate(50rem, 45rem) rotate(10deg);
       }
       51% {
         transform: translate(-50rem, -25rem) rotate(10deg);
@@ -118,7 +119,7 @@
   }
   .asteroid3 {
     transform: translate(-5rem, 25rem) rotate(210deg);
-    animation: destroyer3 50s 30s linear infinite;
+    animation: destroyer3 30s 45s linear infinite;
 
     @keyframes destroyer3 {
       49% {
@@ -338,10 +339,6 @@
             opacity: 1;
           }
         }
-
-        img {
-          opacity: .9;
-        }
       }
 
       td {
@@ -351,11 +348,17 @@
         color: var(--gray);
         padding: 1.4rem 1rem;
         padding-right: 0 !important;
-  
-        img {
-          height: 1.8rem;
-          width: 1.8rem;
-          transform: translateY(2px);
+
+        div {
+          cursor: pointer;
+
+          img {
+            height: 1.8rem;
+            width: 100%;
+            transform: translateY(2px);
+            z-index: 1;
+            opacity: .9;
+          }
         }
 
         strong {
@@ -395,7 +398,54 @@
       padding-right: 2rem !important;
       padding-left: 0;
     }
+
+    tbody td:last-child {
+      position: relative;
+
+      .hazardousText {
+        display: flex;
+        width: auto;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        transform: translate(0, -100% );
+
+        padding: 1.5rem 1.5rem;
+
+        border: 1.5px solid var(--red);
+        background: rgba(0, 0, 0, 0.9);
+        color: var(--white);
+
+        p {
+          min-width: 16rem;
+          text-align: left;
+          line-height: 2rem;
+          text-transform: none !important;
+        }
+
+        img {
+          margin-left: 0.4rem;
+          width: 2rem;
+          height: 2rem;
+          transform: translateY(-.1rem);
+          position: absolute;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          right: 18%;
+          transform: translate(50%, 100%);
+          border: 1.1rem solid;
+          border-color: var(--red) transparent transparent transparent;
+        }
+      }
+    }
   }
+
 
   svg {
     color: white;
