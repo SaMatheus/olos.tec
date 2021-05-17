@@ -42,22 +42,47 @@
     margin-left: 2rem;
   }
 
+  .star {
+    z-index: -1;
+    position: absolute;
+  }
+
   .star1 {
     transform: translate(5rem, 5rem);
   }
+  .star2 {
+    transform: translate(27rem, 0rem);
+  }
+  .star3 {
+    transform: translate(-8.5rem, -5rem);
+  }
+  .star4 {
+    transform: translate(-5rem, -15rem);
+  }
+  .star5 {
+    transform: translate(-18rem, 12rem);
+  }
+  .star6 {
+    transform: translate(15rem, -8rem);
+  }
+  .star7 {
+    transform: translate(-35rem, -12rem);
+  }
+  .star8 {
+    transform: translate(-36rem, 7rem);
+  }
+  .star9 {
+    transform: translate(20rem, 15rem);
+  }
 
-  .asteroid1,
-  .asteroid2,
-  .asteroid3,
-  .asteroid4,
-  .asteroid5 {
+  .asteroid {
     width: 5rem;
     position: absolute;
   }
 
   .asteroid1 {
     transform: translate(11rem, -25rem) rotate(110deg);
-    animation: destroyer 20s linear infinite;
+    animation: destroyer 30s linear infinite;
 
     @keyframes destroyer {
       49% {
@@ -76,7 +101,7 @@
     z-index: -1;
 
     transform: translate(-50rem, -25rem) rotate(10deg);
-    animation: destroyer2 20s 5s linear infinite;
+    animation: destroyer2 30s 15s linear infinite;
 
     @keyframes destroyer2 {
       49% {
@@ -93,7 +118,7 @@
   }
   .asteroid3 {
     transform: translate(-5rem, 25rem) rotate(210deg);
-    animation: destroyer3 20s 10s linear infinite;
+    animation: destroyer3 50s 30s linear infinite;
 
     @keyframes destroyer3 {
       49% {
@@ -105,42 +130,6 @@
       }
       51% {
         transform: translate(-5rem, 25rem) rotate(210deg);
-      }
-    }
-  }
-  .asteroid4 {
-    transform: translate(100rem, 0) rotate(150deg);
-    animation: destroyer4 15s 15s linear infinite;
-
-    @keyframes destroyer4 {
-      49% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-        transform: translate(-100rem, 0) rotate(150deg);
-      }
-      51% {
-        transform: translate(100rem, 0) rotate(150deg);
-      }
-    }
-  }
-  .asteroid5 {
-    z-index: -1;
-
-    transform: translate(30rem, -30rem) rotate(120deg);
-    animation: destroyer5 15s 20s linear infinite;
-
-    @keyframes destroyer5 {
-      49% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-        transform: translate(-120rem, 80rem) rotate(120deg);
-      }
-      51% {
-        transform: translate(30rem, -30rem) rotate(120deg);
       }
     }
   }

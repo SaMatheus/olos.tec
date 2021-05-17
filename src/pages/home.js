@@ -85,20 +85,20 @@ const Home = () => {
                 <img className={styles.logo} src="icons/logo.png" alt="" />
 
                 {/* STARS */}
-                {/* <img className={styles.star1} src="icons/star.png" alt="" />
-                <img className={styles.star2} src="icons/star.png" alt="" />
-                <img className={styles.star3} src="icons/star.png" alt="" />
-                <img className={styles.star4} src="icons/star.png" alt="" />
-                <img className={styles.star5} src="icons/star.png" alt="" />
-                <img className={styles.star6} src="icons/star.png" alt="" />
-                <img className={styles.star7} src="icons/star.png" alt="" /> */}
+                <img className={`${styles.star1} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star2} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star3} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star4} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star5} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star6} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star7} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star8} ${styles.star}`} src="icons/star.png" alt="" />
+                <img className={`${styles.star9} ${styles.star}`} src="icons/star.png" alt="" />
 
                 {/* ASTEROIDS */}
-                <img className={styles.asteroid1} src="icons/asteroid.png" alt="" />
-                <img className={styles.asteroid2} src="icons/asteroid2.png" alt="" />
-                <img className={styles.asteroid3} src="icons/asteroid3.png" alt="" />
-                <img className={styles.asteroid4} src="icons/asteroid4.png" alt="" />
-                <img className={styles.asteroid5} src="icons/asteroid5.png" alt="" />
+                <img className={`${styles.asteroid1} ${styles.asteroid}`} src="icons/asteroid.png" alt="" />
+                <img className={`${styles.asteroid2} ${styles.asteroid}`} src="icons/asteroid2.png" alt="" />
+                <img className={`${styles.asteroid3} ${styles.asteroid}`} src="icons/asteroid3.png" alt="" />
               </div>
               <div className={styles.filterContainer}>
               <label className={styles.searchName}>
@@ -109,7 +109,7 @@ const Home = () => {
               <div className={styles.datePicker} >
                 <label>
                   <p>Data Inicial</p>
-                  <input type="date" value={initialDate} min={initialDate} required onChange={(event) => setInitialDate(event.target.value)}/>
+                  <input type="date" value={initialDate} onChange={(event) => setInitialDate(event.target.value)}/>
                 </label>
                 <label>
                   <p>Data Final</p>
