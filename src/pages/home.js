@@ -122,7 +122,7 @@ const Home = () => {
               <div className={styles.datePicker} >
                 <label>
                   <p>Data Inicial</p>
-                  <input type="date" value={initialDate} onChange={(event) => setInitialDate(event.target.value)}/>
+                  <input type="date" value={initialDate} min={initialDate} onChange={(event) => setInitialDate(event.target.value)}/>
                 </label>
                 <label>
                   <p>Data Final</p>

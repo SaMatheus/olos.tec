@@ -119,7 +119,7 @@
   }
   .asteroid3 {
     transform: translate(-5rem, 25rem) rotate(210deg);
-    animation: destroyer3 30s 45s linear infinite;
+    animation: destroyer3 15s 25s linear infinite;
 
     @keyframes destroyer3 {
       49% {
