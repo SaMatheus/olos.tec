@@ -69,9 +69,22 @@ const Home = () => {
     return searchName ? searchingFilteredNames : asteroidsArray
   }
 
-  const clearDateFields = () => {
-    setInitialDate('')
-    setFinalDate('')
+  const cutDiameterMin = (index) => {
+    const diameterMin = 
+      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min).split('').indexOf('.')
+    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min).slice(0, diameterMin + 4))
+  }
+
+  const cutDiameterMax = (index) => {
+    const diameterMax = 
+      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max).split('').indexOf('.')
+    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max).slice(0, diameterMax + 4))
+  }
+
+  const cutDistanceFromEarth = (index) => {
+    const distanceFromEarth = 
+      String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).split('').indexOf('.')
+    return (String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).slice(0, distanceFromEarth))
   }
 
   return (
@@ -118,7 +131,10 @@ const Home = () => {
               </div>
               {initialDate && <h6>A data final deve ser até 7 dias após a data inicial.</h6>}
               <div className={styles.buttons}>
-                <Button onClick={() => clearDateFields()}>Limpar</Button>
+                <Button onClick={() => {
+                  setInitialDate('')
+                  setFinalDate('')
+                }}>Limpar</Button>
                 <Button onClick={() => getNasaApi(initialDate, finalDate)}>Buscar</Button>
               </div>
             </div>
@@ -129,7 +145,7 @@ const Home = () => {
                 <thead>
                   <tr>
                     <th rowSpan="2">Nome</th>
-                    <th colSpan="2">Diametro estimado (km)</th>
+                    <th colSpan="2">Diametro estimado</th>
                     <th rowSpan="2">Distancia da Terra</th>
                     <th></th>
                   </tr>
@@ -155,16 +171,16 @@ const Home = () => {
                         </td>
                         <td>
                           <span>
-                            {obj.estimated_diameter.meters.estimated_diameter_min}
+                            {cutDiameterMin(index)} <strong>Km</strong>
                           </span>
                         </td>
                         <td>
                           <span>
-                            {obj.estimated_diameter.meters.estimated_diameter_max}
+                            {cutDiameterMax(index)} <strong>Km</strong>
                           </span>
                         </td>
                         <td>
-                          <p>{obj.close_approach_data[0].miss_distance.kilometers} <strong>Km</strong></p>
+                          <p>{cutDistanceFromEarth(index)} <strong>Km</strong></p>
                         </td>
                         <td>
                         { obj.is_potentially_hazardous_asteroid && ( 

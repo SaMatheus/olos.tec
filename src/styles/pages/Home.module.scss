@@ -204,6 +204,8 @@
 
   label {
     width: 100%;
+    padding: 0.1rem;
+
     p {
       font-weight: 400;
       text-transform: capitalize;
@@ -217,6 +219,10 @@
       font-size: 1rem;
       color: var(--white);
       border-bottom: 1px solid var(--red);
+
+      &:focus {
+        border-bottom: 1px solid var(--orange);
+      }
 
       &::-webkit-calendar-picker-indicator {
         filter: invert(1);
