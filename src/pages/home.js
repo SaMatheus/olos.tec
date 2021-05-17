@@ -44,7 +44,7 @@ const Home = () => {
     }
 
     const mergeAsteroids = [].concat.apply([], asteroidsArr)
-    setAsteroidsArray(mergeAsteroids.reverse())
+    // setAsteroidsArray(mergeAsteroids.reverse())
   }
 
   const getNasaApi = async(startDate, endDate) => {
@@ -208,7 +208,13 @@ const Home = () => {
               </table>
             </div>
           </div>
-        ) : <h1>Carregando dados...</h1>}
+        ) : (
+          <div className={styles.loadingContainer}>
+            <div className={styles.icon}>
+            </div>
+            <h1>Buscando asteroides</h1>
+          </div>
+        )}
       </div>
     </>
   )
