@@ -18,7 +18,132 @@
 }
 
 .presentationContainer {
-  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .earth {
+    width: 18rem;
+    animation: rotate 60s linear infinite;
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .logo {
+    width: 30rem;
+    height: 18rem;
+    object-fit: cover;
+    z-index: 1;
+    margin-left: 2rem;
+  }
+
+  .star1 {
+    transform: translate(5rem, 5rem);
+  }
+
+  .asteroid1,
+  .asteroid2,
+  .asteroid3,
+  .asteroid4,
+  .asteroid5 {
+    width: 5rem;
+    position: absolute;
+  }
+
+  .asteroid1 {
+    transform: translate(11rem, -25rem) rotate(110deg);
+    animation: destroyer 20s linear infinite;
+
+    @keyframes destroyer {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(-56rem, 35rem) rotate(110deg);
+      }
+      51% {
+        transform: translate(11rem, -25rem) rotate(110deg);
+      }
+    }
+  }
+  .asteroid2 {
+    z-index: -1;
+
+    transform: translate(-50rem, -25rem) rotate(10deg);
+    animation: destroyer2 20s 5s linear infinite;
+
+    @keyframes destroyer2 {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(50rem, 25rem) rotate(10deg);
+      }
+      51% {
+        transform: translate(-50rem, -25rem) rotate(10deg);
+      }
+    }
+  }
+  .asteroid3 {
+    transform: translate(-5rem, 25rem) rotate(210deg);
+    animation: destroyer3 20s 10s linear infinite;
+
+    @keyframes destroyer3 {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(-55rem, -45rem) rotate(210deg);
+      }
+      51% {
+        transform: translate(-5rem, 25rem) rotate(210deg);
+      }
+    }
+  }
+  .asteroid4 {
+    transform: translate(100rem, 0) rotate(150deg);
+    animation: destroyer4 15s 15s linear infinite;
+
+    @keyframes destroyer4 {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(-100rem, 0) rotate(150deg);
+      }
+      51% {
+        transform: translate(100rem, 0) rotate(150deg);
+      }
+    }
+  }
+  .asteroid5 {
+    z-index: -1;
+
+    transform: translate(30rem, -30rem) rotate(120deg);
+    animation: destroyer5 15s 20s linear infinite;
+
+    @keyframes destroyer5 {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(-120rem, 80rem) rotate(120deg);
+      }
+      51% {
+        transform: translate(30rem, -30rem) rotate(120deg);
+      }
+    }
+  }
 }
 
 .filterContainer {
@@ -31,6 +156,8 @@
 
   box-shadow: -5px 5px 20px 1px var(--dark-black);
   background: var(--dark-gray);
+
+  z-index: 1;
 
   h3 {
     color: var(--orange);
