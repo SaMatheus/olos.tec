@@ -1,15 +1,8 @@
 
 .mainContainer {
-  // Box Model
-  height: auto;
-  min-height: 100vh;
-  width: 100vw;
   overflow-x: hidden;
-}
-
-.contentContainer {
-  margin: 0 auto;
-  padding: 2rem;
+  height: 100%;
+  padding: 5rem;
 
   h1 {
     color: var(--white);
@@ -17,21 +10,182 @@
 }
 
 .listingContainer {
-  // Box Model
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.tableContainer {
-  max-height: 80vh;
+.filterContainer {
+  min-width: 47rem;
+
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 4rem;
+
+  box-shadow: -5px 5px 20px 1px var(--dark-black);
+  background: var(--dark-gray);
+
+  h3 {
+    color: var(--orange);
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    
+    align-self: flex-start;
+
+    cursor: alias;
+  }
+
+  h6 {
+    font-weight: 300;
+    color: var(--gray);
+    
+    align-self: flex-start;
+    transform: translateY(-1rem);
+  }
+
+  input {
+    width: inherit;
+    background: transparent;
+    border: none;
+    color: white;
+  }
+}
+
+.searchName {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 1rem;
+  margin-bottom: 3.2rem;
+
+  border-bottom: 1px solid var(--red);
+
+  font-size: 1.2rem;
+
+  svg {
+    color: var(--orange);
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+.datePicker {
+  display: flex;
+  align-items: center;
+  gap: 0 2rem;
+  width: 100%;
+  padding: 1.8rem 0;
+
+  label {
+    width: 100%;
+    p {
+      font-weight: 400;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      color: var(--gray);
+    }
+
+    input {
+      width: 100%;
+      padding: 1rem 0;
+      font-size: 1rem;
+      color: var(--white);
+      border-bottom: 1px solid var(--red);
+
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+  }
+
+  h6 {
+    color: var(--gray);
+    font-weight: 300;
+    font-size: 2px;
+  }
+}
+
+.buttons {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem 0 0;
+  gap: 2rem;
+
+  button {
+    width: 30%;
+    padding: 1rem;
+
+    position: relative;
+    z-index: 1;
+
+    font-weight: 600;
+
+    &:hover::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: 100%;
+      z-index: -1;
+      animation: split .3s ease forwards;
+  
+      @keyframes split {
+        to {
+            right: -1px;
+        }
+      }
+    }
+  }
+
+  .clearButton {
+    color: var(--orange);
+    background: transparent;
+    border: 1px solid var(--orange);
+  
+    &:hover {
+      color: var(--dark-black);
+    }
+  
+    &:hover::before {
+      background: var(--orange);
+    }
+  }
+  
+  .searchButton {
+    color: var(--red);
+    background: transparent;
+    border: 1px solid var(--red);
+  
+    &:hover {
+      color: var(--dark-black);
+    }
+  
+    &:hover::before {
+      background: var(--red);
+    }
+  }
+}
+
+.table {
   position: relative;
   max-width: 100%;
+  margin-bottom: 2rem;
 
   table {
     margin-top: 2rem;
     border-collapse: collapse;
     width: 100%;
+    transition: all .5s ease;
 
     thead {
       background: var(--black);
@@ -44,6 +198,7 @@
         color: var(--orange);
         vertical-align: middle; 
         padding: 1.8rem 1rem;
+        letter-spacing: .5px;
       }
 
       tr:last-child {
@@ -70,14 +225,15 @@
   
     tbody {
       display: block;
-      max-height: 80vh;
+      max-height: 60vh;
+      min-height: 10vh;
       overflow-y: scroll;
       background: var(--dark-black);
       padding: 0 1rem;
       border-radius: 0 0 1.4rem 1.4rem;
 
       tr {
-        background: var(--light-gray);
+        background: var(--dark-gray);
         margin: 1rem 0;
         border-radius: 1rem;
 
@@ -103,8 +259,9 @@
         padding-right: 0 !important;
   
         img {
-          height: 1.6rem;
-          width: 1.6rem;
+          height: 1.8rem;
+          width: 1.8rem;
+          transform: translateY(2px);
         }
 
         strong {
@@ -140,7 +297,9 @@
 
     tbody td:last-child,
     thead th:last-child {
-      width: 40px;
+      width: 50px;
+      padding-right: 2rem !important;
+      padding-left: 0;
     }
   }
 
