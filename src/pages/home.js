@@ -44,7 +44,7 @@ const Home = () => {
     }
 
     const mergeAsteroids = [].concat.apply([], asteroidsArr)
-    // setAsteroidsArray(mergeAsteroids.reverse())
+    setAsteroidsArray(mergeAsteroids.reverse())
   }
 
   const getNasaApi = async(startDate, endDate) => {
