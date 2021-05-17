@@ -16,6 +16,9 @@ import { api, apiKey } from '../services/api'
 // HANDLE DATES
 import { handleDate } from '../utils/handleDate'
 
+// COMPONENTS
+import Button from '../components/Button'
+
 
 const Home = () => {
   const [asteroidsArray, setAsteroidsArray] =useState([])
@@ -74,8 +77,12 @@ const Home = () => {
     <>
       <div className={styles.mainContainer}>
         {asteroidsArray.length ? (
-          <div className={styles.listingContainer}>
-            <div className={styles.filterContainer}>
+          <div>
+            <div className={styles.headerContainer}>
+              <div className={styles.presentationContainer}>
+                PRESENTATION
+              </div>
+              <div className={styles.filterContainer}>
               <label className={styles.searchName}>
                 <input type="text" value={searchName} onChange={(event) => setSearchName(event.target.value) } placeholder="Ache um asteroide pelo nome"/>
                 <BiSearchAlt />
@@ -93,11 +100,12 @@ const Home = () => {
               </div>
               {initialDate && <h6>A data final deve ser até 7 dias após a data inicial.</h6>}
               <div className={styles.buttons}>
-                <button className={styles.clearButton} onClick={() => clearDateFields()}>Limpar</button>
-                <button type="submit" className={styles.searchButton} onClick={() => getNasaApi(initialDate, finalDate)}>Buscar</button>
+                <Button onClick={() => clearDateFields()}>Limpar</Button>
+                <Button onClick={() => getNasaApi(initialDate, finalDate)}>Buscar</Button>
               </div>
             </div>
-            <div className={styles.table}>
+            </div>
+            <div className={styles.tableContainer}>
               <RiMouseLine />
               <table cellSpacing="0">
                 <thead>
