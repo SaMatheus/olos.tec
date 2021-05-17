@@ -16,11 +16,11 @@ html {
   }
 
   &::-webkit-scrollbar-track {
-    margin: 4px 10px 14px;
+    margin: 4px 0;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: black;
+    background: var(--orange);
     border-radius: 1rem;
   }
 
