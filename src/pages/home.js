@@ -31,7 +31,7 @@ const Home = () => {
 
   useEffect(() => {
     const { startDate, endDate } = handleDate()
-    getNasaApi(startDate, endDate)
+    // getNasaApi(startDate, endDate)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

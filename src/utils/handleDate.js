@@ -1,11 +1,20 @@
 // DATE-FNS
 import format from 'date-fns/format'
+import { addDays } from 'date-fns'
 
-const cutDate = (currentDay) => {
-  const dayLength = currentDay - 6
-  const newStartDay = dayLength <= 10 ? `0${dayLength}` : dayLength
+const subtractedCurrentDay = (currentDay) => {
+  const startDay = currentDay - 6
+  const newStartDay = startDay <= 10 ? `0${startDay}` : startDay
 
   return { newStartDay }
+}
+const subtractedCurrentMonth = (currentDay, currentMonth, currentYear) => {
+  const day = currentDay - 6
+  const newMonth = currentMonth - 1
+  const daysCurrentMonth = new Date(currentYear, newMonth, 0).getDate();
+  const newDay = daysCurrentMonth + day
+  
+  return { newDay, newMonth}
 }
 
 const handleDate = () => {
@@ -14,9 +23,20 @@ const handleDate = () => {
   const currentYear = format(new Date(), 'yyyy')
 
   if(currentDay) {
-    const { newStartDay} = cutDate(currentDay)
+    const { newStartDay } = subtractedCurrentDay(currentDay)
+    const { newDay, newMonth } = subtractedCurrentMonth(currentDay, currentMonth, currentYear)
+
     let startDate = `${currentYear}-${currentMonth}-${newStartDay}`
     let endDate = `${currentYear}-${currentMonth}-${currentDay}`
+
+    if(currentDay - 6 >= 1) {
+      console.log("Mantendo o mês")
+      startDate = `${currentYear}-${currentMonth}-${newStartDay}`
+    }
+    if(currentDay - 6 < 1) {
+      console.log("Mudando o mês")
+      startDate = `${currentYear}-${newMonth}-${newDay}`
+    }
 
     return {
       startDate,
