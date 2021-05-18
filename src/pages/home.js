@@ -26,11 +26,15 @@ const Home = () => {
   const [initialDate, setInitialDate] = useState('')
   const [finalDate, setFinalDate] = useState('')
   const [isHazardousTextIndex, setIsHazardousTextIndex] = useState(null)
+  const [inputStartDate, setInputStartDate] = useState()
+  const [inputEndDate, setInputEndDate] = useState()
 
   let maxFinalDateRange = initialDate && `${initialDate.slice(0, 8)}${Number(initialDate.slice(-2)) + 6}`
 
   useEffect(() => {
     const { startDate, endDate } = handleDate()
+    setInputStartDate(startDate)
+    setInputEndDate(endDate)
     getNasaApi(startDate, endDate)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -122,11 +126,11 @@ const Home = () => {
               <div className={styles.datePicker} >
                 <label>
                   <p>Data Inicial</p>
-                  <input type="date" value={initialDate} min={initialDate} onChange={(event) => setInitialDate(event.target.value)}/>
+                  <input type="date" value={!initialDate ? inputStartDate : initialDate} min={initialDate} onChange={(event) => setInitialDate(event.target.value)}/>
                 </label>
                 <label>
                   <p>Data Final</p>
-                  <input type="date" value={finalDate} min={initialDate} max={maxFinalDateRange} onChange={(event) => setFinalDate(event.target.value)}/>
+                  <input type="date" value={!maxFinalDateRange ? inputEndDate : maxFinalDateRange} min={initialDate} max={maxFinalDateRange} onChange={(event) => setFinalDate(event.target.value)}/>
                 </label>
               </div>
               {initialDate && <h6>A data final deve ser até 7 dias após a data inicial.</h6>}
