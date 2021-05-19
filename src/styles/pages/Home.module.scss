@@ -282,6 +282,21 @@
     &:hover::before {
       background: var(--red);
     }
+
+    &:disabled {
+      opacity: 0.2;
+      color: var(--gray);
+      border: 1px solid var(--gray);
+      cursor: initial;
+    }
+    &:disabled::before {
+      background: transparent;
+    }
+    &:disabled:hover {
+      background: transparent;
+      color: var(--gray);
+      border: 1px solid var(--gray);
+    }
   }
 }
 
@@ -563,7 +578,7 @@
     transform: translate(-5rem, -.5rem) rotate(195deg);
     z-index: 1;
 
-    animation: satelite 3s linear infinite;
+    animation: satelite 2s linear infinite;
   }
 
   h1 {

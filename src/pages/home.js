@@ -90,6 +90,10 @@ const Home = () => {
     return (String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).slice(0, distanceFromEarth))
   }
 
+  const disabledSearchButton = () => {
+    return finalDate.slice(-2) - initialDate.slice(-2) > 7 
+  }
+
   return (
     <>
       <div className={styles.mainContainer}>
@@ -160,7 +164,7 @@ const Home = () => {
                   setInitialDate(null)
                   setFinalDate(null)
                 }}>Limpar</Button>
-                <Button onClick={() => getNasaApi(initialDate, finalDate)}>Buscar</Button>
+                <Button onClick={() => getNasaApi(initialDate, finalDate)} disabled={finalDate.slice(-2) - initialDate.slice(-2) > 7 }>Buscar</Button>
               </div>
             </div>
             </div>
