@@ -26,29 +26,28 @@ O <strong>Asteroids Above</strong> é uma aplicação web para encontrar asteroi
 🛸 Tecnologias
 </h2>
 
-<p>
-<a href="https://reactjs.org">
- <img alt="reactjs" title="reactjs" src="https://img.shields.io/badge/React-javascript%20library-61dafb?logo=React" />
-</a>
-</p>
- 
-<p>
-<a href="https://sass-lang.com/">
-  <img alt="sass" title="sass" src="https://img.shields.io/badge/Sass-css%20preprocessor-CC6699?logo=Sass" />
-</a>
-</p>
-
-<p>
-<a href="https://reactrouter.com/">
-  <img alt="react router" title="react router" src="https://img.shields.io/badge/Router-react%20router%20library-ca4245?logo=react%20router" />
-</a>
-</p>
-
-<p>
-<a href="https://dashboard.heroku.com">
-  <img alt="heroku" title="heroku" src="https://img.shields.io/badge/Heroku-PaaS-430098?logo=heroku" />
-</a>
-</p>
+<ul>
+  <li>
+    <a href="https://reactjs.org">
+     <img alt="reactjs" title="reactjs" src="https://img.shields.io/badge/React-javascript%20library-61dafb?logo=React" />
+    </a>
+  </li>
+  <li>
+    <a href="https://sass-lang.com/">
+      <img alt="sass" title="sass" src="https://img.shields.io/badge/Sass-css%20preprocessor-CC6699?logo=Sass" />
+    </a>
+  </li>
+  <li>
+    <a href="https://reactrouter.com/">
+      <img alt="react router" title="react router" src="https://img.shields.io/badge/Router-react%20router%20library-ca4245?logo=react%20router" />
+    </a>
+  </li>
+  <li>
+    <a href="https://dashboard.heroku.com">
+      <img alt="heroku" title="heroku" src="https://img.shields.io/badge/Heroku-PaaS-430098?logo=heroku" />
+    </a>
+  </li>
+</ul>
 
 <br>
 
