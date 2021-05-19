@@ -103,8 +103,8 @@ const Home = () => {
                 : <h6>A busca inicial é feita a partir da sua data atual.</h6>}
               <div className={styles.buttons}>
                 <Button onClick={() => {
-                  setInitialDate(null)
-                  setFinalDate(null)
+                  setInitialDate("")
+                  setFinalDate("")
                 }}>Limpar</Button>
                 <Button 
                   onClick={() => getNasaApi(initialDate, finalDate)}
