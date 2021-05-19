@@ -1,6 +1,6 @@
-<p align="center">
-  <a href="https://magictricksgame.herokuapp.com/">
-    <img title="Visualizar aplicação" width="25%" src="README/banner.png">
+<p align="center" width="100%">
+  <a href="" width="100%">
+    <img style="object-fit: cover" title="Visualizar aplicação" width="25%" src="README/banner.png">
   </a>
 </p>
 
