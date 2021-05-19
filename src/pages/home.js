@@ -26,15 +26,12 @@ const Home = () => {
   const [initialDate, setInitialDate] = useState('')
   const [finalDate, setFinalDate] = useState('')
   const [isHazardousTextIndex, setIsHazardousTextIndex] = useState(null)
-  const [inputStartDate, setInputStartDate] = useState()
-  const [inputEndDate, setInputEndDate] = useState()
-
-  let maxFinalDateRange = initialDate && `${initialDate.slice(0, 8)}${Number(initialDate.slice(-2)) + 6}`
+  const [inputEndtDate, setInputEndtDate] = useState()
+  const [isSearchLoading, setIsSearchLoading] = useState(false)
 
   useEffect(() => {
     const { startDate, endDate } = handleDate()
-    setInputStartDate(startDate)
-    setInputEndDate(endDate)
+    setInputEndtDate(endDate)
     getNasaApi(startDate, endDate)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -52,9 +49,11 @@ const Home = () => {
   }
 
   const getNasaApi = async(startDate, endDate) => {
+    setIsSearchLoading(true)
     await api
       .get(`feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
       .then((response) => {
+        // setIsSearchLoading(false)
         mergeAsteroidsByMultipleDays(response.data.near_earth_objects)
       })
       .catch((error) => console.log(error))
@@ -97,6 +96,12 @@ const Home = () => {
         {asteroidsArray.length ? (
           <div>
             <div className={styles.headerContainer}>
+              {isSearchLoading && 
+                <div className={styles.searchLoadingContainer}>
+                  <img className={styles.satelite} src="/icons/satelite.png" alt="" />
+                  <h1>Contatando a NASA</h1>
+                </div>
+              }
               <div className={styles.presentationContainer}>
                 <img className={styles.earth} src="icons/earth.png" alt="" />
                 <img className={styles.logo} src="icons/logo.png" alt="" />
@@ -119,25 +124,41 @@ const Home = () => {
               </div>
               <div className={styles.filterContainer}>
               <label className={styles.searchName}>
-                <input type="text" value={searchName} onChange={(event) => setSearchName(event.target.value) } placeholder="Ache um asteroide pelo nome"/>
+                <input 
+                  type="text" 
+                  value={searchName} 
+                  onChange={(event) => setSearchName(event.target.value) } 
+                  placeholder="Busque aqui por um asteroide pelo nome"/>
                 <BiSearchAlt />
               </label>
               <h3>Busque pela data</h3>
               <div className={styles.datePicker} >
                 <label>
                   <p>Data Inicial</p>
-                  <input type="date" value={!initialDate ? inputStartDate : initialDate} min={initialDate} onChange={(event) => setInitialDate(event.target.value)}/>
+                  <input 
+                    type="date" 
+                    max={inputEndtDate } 
+                    onChange={(event) => setInitialDate(event.target.value)}
+                  />
                 </label>
                 <label>
                   <p>Data Final</p>
-                  <input type="date" value={!maxFinalDateRange ? inputEndDate : maxFinalDateRange} min={initialDate} max={maxFinalDateRange} onChange={(event) => setFinalDate(event.target.value)}/>
+                  <input 
+                    type="date" 
+                    min={initialDate} 
+                    max={inputEndtDate} 
+                    onChange={(event) => setFinalDate(event.target.value)}
+                    disabled={!initialDate && true}
+                  />
                 </label>
               </div>
-              {initialDate && <h6>A data final deve ser até 7 dias após a data inicial.</h6>}
+              {initialDate
+                ? <h6>A data final deve ser até 7 dias após a data inicial.</h6> 
+                : <h6>A busca inicial é feita a partir da sua data atual.</h6>}
               <div className={styles.buttons}>
                 <Button onClick={() => {
-                  setInitialDate('')
-                  setFinalDate('')
+                  setInitialDate(null)
+                  setFinalDate(null)
                 }}>Limpar</Button>
                 <Button onClick={() => getNasaApi(initialDate, finalDate)}>Buscar</Button>
               </div>

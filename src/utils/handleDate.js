@@ -2,13 +2,13 @@
 import format from 'date-fns/format'
 
 const subtractedCurrentDay = (currentDay) => {
-  const startDay = currentDay - 6
+  const startDay = currentDay - 7
   const newStartDay = startDay <= 10 ? `0${startDay}` : startDay
 
   return { newStartDay }
 }
 const subtractedCurrentMonth = (currentDay, currentMonth, currentYear) => {
-  const day = currentDay - 6
+  const day = currentDay - 7
   const newMonth = currentMonth - 1
   const daysCurrentMonth = new Date(currentYear, newMonth, 0).getDate();
   const newDay = daysCurrentMonth + day
@@ -36,10 +36,10 @@ const handleDate = () => {
     let startDate = `${currentYear}-${currentMonth}-${newStartDay}`
     let endDate = `${currentYear}-${currentMonth}-${currentDay}`
 
-    if(currentDay - 6 >= 1) {
+    if(currentDay - 7 >= 1) {
       startDate = `${currentYear}-${currentMonth}-${newStartDay}`
     }
-    if(currentDay - 6 < 1) {
+    if(currentDay - 7 < 1) {
       startDate = `${currentYear}-${newMonth}-${newDay}`
     }
     if(currentMonth - 1 < 1) {
