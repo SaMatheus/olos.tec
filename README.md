@@ -22,11 +22,10 @@
 <p align="justify">
 O <strong>Asteroids Above</strong> é uma aplicação web para encontrar asteroides que passaram pela terra a partir de uma data especifica. Alguns deles são perigosos!
 <br>
-
+<br>
 <h2 id="tec">
 🛸 Tecnologias
 </h2>
-
 <ul >
   <li>
     <a href="https://reactjs.org">
