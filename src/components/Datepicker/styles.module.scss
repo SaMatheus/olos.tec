@@ -1,0 +1,47 @@
+.datePicker {
+  display: flex;
+  align-items: center;
+  gap: 0 2rem;
+  width: 100%;
+  padding: 1.8rem 0;
+
+  label {
+    width: 100%;
+    padding: 0.1rem;
+
+    p {
+      font-weight: 400;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      color: var(--gray);
+    }
+
+    input {
+      width: 100%;
+      padding: 1rem 0;
+      font-size: 1rem;
+      color: var(--white);
+      border-bottom: 1px solid var(--red);
+
+      &:focus {
+        border-bottom: 1px solid var(--orange);
+      }
+
+      &:disabled {
+        opacity: 0.1;
+      }
+
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+  }
+
+  h6 {
+    color: var(--gray);
+    font-weight: 300;
+    font-size: 2px;
+  }
+}

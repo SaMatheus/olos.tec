@@ -1,0 +1,118 @@
+.presentationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .earth {
+    width: 18rem;
+    animation: rotate 60s linear infinite;
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .logo {
+    width: 30rem;
+    height: 18rem;
+    object-fit: cover;
+    z-index: 1;
+    margin-left: 2rem;
+  }
+
+  .star {
+    z-index: -1;
+    position: absolute;
+    opacity: 0.7;
+  }
+
+  .star1 {
+    transform: translate(5rem, 5rem);
+  }
+  .star2 {
+    transform: translate(27rem, 0rem);
+  }
+  .star3 {
+    transform: translate(-8.5rem, -5rem);
+  }
+  .star4 {
+    transform: translate(-5rem, -15rem);
+  }
+  .star5 {
+    transform: translate(-18rem, 12rem);
+  }
+  .star6 {
+    transform: translate(15rem, -8rem);
+  }
+  .star7 {
+    transform: translate(-35rem, -12rem);
+  }
+  .star8 {
+    transform: translate(-36rem, 7rem);
+  }
+  .star9 {
+    transform: translate(20rem, 15rem);
+  }
+
+  .asteroid {
+    width: 5rem;
+    position: absolute;
+  }
+
+  .asteroid1 {
+    transform: translate(11rem, -25rem) rotate(110deg);
+    animation: destroyer 30s linear infinite;
+
+    @keyframes destroyer {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(-56rem, 35rem) rotate(110deg);
+      }
+      51% {
+        transform: translate(11rem, -25rem) rotate(110deg);
+      }
+    }
+  }
+  .asteroid2 {
+    z-index: -1;
+
+    transform: translate(-50rem, -25rem) rotate(10deg);
+    animation: destroyer2 30s 15s linear infinite;
+
+    @keyframes destroyer2 {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(50rem, 45rem) rotate(10deg);
+      }
+      51% {
+        transform: translate(-50rem, -25rem) rotate(10deg);
+      }
+    }
+  }
+  .asteroid3 {
+    transform: translate(-5rem, 25rem) rotate(210deg);
+    animation: destroyer3 15s 25s linear infinite;
+
+    @keyframes destroyer3 {
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: translate(-55rem, -45rem) rotate(210deg);
+      }
+      51% {
+        transform: translate(-5rem, 25rem) rotate(210deg);
+      }
+    }
+  }
+}
