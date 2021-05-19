@@ -55,7 +55,6 @@ O <strong>Asteroids Above</strong> é uma aplicação web para encontrar asteroi
 <h2 id="Projeto">
 :wrench: Projeto
 </h2>
-<br>
 
 <a href="https://asteroidsabove.herokuapp.com/">
 <img title="asteroids above" src="README/project.png">
