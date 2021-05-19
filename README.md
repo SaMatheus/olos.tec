@@ -50,13 +50,13 @@ O <strong>Asteroids Above</strong> é uma aplicação web para encontrar asteroi
 <br>
 
 <a href="">
-<img title="asteroids above" src="README/project.png.png">
+<img title="asteroids above" src="README/project.png">
 </a>
 <h6 align="center">Clique na imagem para visualizar a aplicação</h6>
 <br>
 
 <h2 id="roadmap">
-⚛ RoadMap
+:world_map: RoadMap
 </h2>
 <br>
 
