@@ -11,7 +11,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import {useState, useEffect, useMemo} from 'react'
 
 // REQUEST
-import { api, apiKey } from '../services/api'
+import request from '../services/requestApi'
 
 // HANDLE DATES
 import { handleDate } from '../utils/handleDate'
@@ -37,12 +37,7 @@ const Home = () => {
   }, [])
 
   const mergeAsteroidsByMultipleDays = (asteroidByDays) => {
-    let asteroidsArr = []
-    let keys = Object.keys(asteroidByDays)
-
-    for(let i =0; i < keys.length; i++) {
-      asteroidsArr.push(asteroidByDays[keys[i]])
-    }
+    let asteroidsArr = Object.keys(asteroidByDays).map(obj => asteroidByDays[obj])
 
     const mergeAsteroids = [].concat.apply([], asteroidsArr).reverse()
     setAsteroidsArray(mergeAsteroids)
@@ -50,15 +45,9 @@ const Home = () => {
 
   const getNasaApi = async(startDate, endDate) => {
     setIsSearchLoading(true)
-    
-    await api
-      .get(`feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
-      .then((response) => {
-        setIsSearchLoading(false)
-        const json = response.data.near_earth_objects
-        mergeAsteroidsByMultipleDays(json)
-      })
-      .catch((error) => console.log(error))
+    const json = await request.getAsteroids(startDate, endDate)
+    await setIsSearchLoading(false)
+    await mergeAsteroidsByMultipleDays(json)
   }
 
   const searchingFilteredNames = useMemo(() => {
@@ -70,27 +59,38 @@ const Home = () => {
     })
   }, [searchName])
 
-  const showArray = () => {
-    return searchName ? searchingFilteredNames : asteroidsArray
-  }
+  const showArray = () => searchName ? searchingFilteredNames : asteroidsArray
+
+  const cutName = (obj) => obj.name.substring(0, 1) === "(" ? obj.name.slice(1, -1) : obj.name
 
   const cutDiameterMin = (index) => {
     const diameterMin = 
-      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min).split('').indexOf('.')
-    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min).slice(0, diameterMin + 4))
+      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min)
+        .split('')
+        .indexOf('.')
+    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min)
+      .slice(0, diameterMin + 4))
   }
 
   const cutDiameterMax = (index) => {
     const diameterMax = 
-      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max).split('').indexOf('.')
-    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max).slice(0, diameterMax + 4))
+      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max)
+        .split('')
+        .indexOf('.')
+    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max)
+      .slice(0, diameterMax + 4))
   }
 
   const cutDistanceFromEarth = (index) => {
     const distanceFromEarth = 
-      String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).split('').indexOf('.')
-    return (String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).slice(0, distanceFromEarth))
+      String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers)
+      .split('')
+      .indexOf('.')
+    return (String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers)
+    .slice(0, distanceFromEarth))
   }
+
+  const hazardousText = "Esse asteroide é potencialmente um perigo para a terra!" 
 
   return (
     <>
@@ -98,12 +98,14 @@ const Home = () => {
         {asteroidsArray.length ? (
           <div>
             <div className={styles.headerContainer}>
-              {isSearchLoading && 
+              {isSearchLoading &&
+              // TORNAR COMPONENTE LOADING
                 <div className={styles.searchLoadingContainer}>
                   <img className={styles.satelite} src="/icons/satelite.png" alt="" />
                   <h1>Contatando a NASA</h1>
                 </div>
               }
+              {/* TORNAR COMPONENTE PRESENTATION */}
               <div className={styles.presentationContainer}>
                 <img className={styles.earth} src="icons/earth.png" alt="" />
                 <img className={styles.logo} src="icons/logo.png" alt="" />
@@ -125,6 +127,7 @@ const Home = () => {
                 <img className={`${styles.asteroid3} ${styles.asteroid}`} src="icons/asteroid3.png" alt="" />
               </div>
               <div className={styles.filterContainer}>
+                {/* TORNAR COMPONENTE SEARCH INPUT */}
               <label className={styles.searchName}>
                 <input 
                   type="text" 
@@ -134,6 +137,7 @@ const Home = () => {
                 <BiSearchAlt />
               </label>
               <h3>Busque pela data</h3>
+              {/* TORNAR COMPONENTE DATEPICKER */}
               <div className={styles.datePicker} >
                 <label>
                   <p>Data Inicial</p>
@@ -173,12 +177,10 @@ const Home = () => {
               <table cellSpacing="0">
                 <thead>
                   <tr>
-                    <th rowSpan="2">Nome</th>
+                    <th>Nome</th>
                     <th colSpan="2">Diametro estimado</th>
-                    <th rowSpan="2">Distancia da Terra</th>
+                    <th>Distancia da Terra</th>
                     <th></th>
-                  </tr>
-                  <tr>
                   </tr>
                   <tr>
                     <th>
@@ -195,7 +197,7 @@ const Home = () => {
                       <tr key={index}>
                         <td>
                           <p>
-                            {obj.name.substring(0, 1) === "(" ? obj.name.slice(1, -1) : obj.name}
+                            {cutName(obj)}
                           </p>
                         </td>
                         <td>
@@ -212,10 +214,12 @@ const Home = () => {
                           <p>{cutDistanceFromEarth(index)} <strong>Km</strong></p>
                         </td>
                         <td>
+                          {/* COMPOENTENTIZAR */}
                         { obj.is_potentially_hazardous_asteroid && ( 
                           <div 
-                          onMouseEnter={() => setIsHazardousTextIndex(index)} 
-                          onMouseLeave={() => setIsHazardousTextIndex(null)} >
+                            onMouseEnter={() => setIsHazardousTextIndex(index)}
+                            onMouseLeave={() => setIsHazardousTextIndex(null)}
+                          >
                             <img 
                               src="icons/warn.svg" 
                               alt="Asteroide perigoso" 
@@ -223,7 +227,7 @@ const Home = () => {
                             {isHazardousTextIndex === index && 
                             <div className={styles.hazardousText}>
                               <p>
-                                Esse asteroide é potencialmente um perigo para a terra!
+                                {hazardousText}
                                 <img src="icons/scared.png" alt="Medo" />
                               </p>
                             </div>}
@@ -238,6 +242,7 @@ const Home = () => {
             </div>
           </div>
         ) : (
+          // COMPONENTIZAR
           <div className={styles.loadingContainer}>
             <div className={styles.icon}>
             </div>
