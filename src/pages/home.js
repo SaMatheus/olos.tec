@@ -50,6 +50,7 @@ const Home = () => {
 
   const getNasaApi = async(startDate, endDate) => {
     setIsSearchLoading(true)
+    
     await api
       .get(`feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
       .then((response) => {
