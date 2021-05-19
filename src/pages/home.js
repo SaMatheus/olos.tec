@@ -53,7 +53,7 @@ const Home = () => {
     await api
       .get(`feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
       .then((response) => {
-        // setIsSearchLoading(false)
+        setIsSearchLoading(false)
         mergeAsteroidsByMultipleDays(response.data.near_earth_objects)
       })
       .catch((error) => console.log(error))
