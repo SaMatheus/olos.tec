@@ -61,10 +61,10 @@ Essa é a tela inicial do projeto, onde encontramos além dessa apresentação M
 
 <div styles="display: flex; gap: 16px; align-items: center;">
   <a href="">
-    <img title="asteroids above" width="50%" src="README/carregamento1.png">
+    <img title="asteroids above" width="40%" src="README/carregamento1.png">
   </a>
   <a href="">
-    <img title="asteroids above" width="50%" src="README/carregamento2.png">
+    <img title="asteroids above" width="40%" src="README/carregamento2.png">
   </a>
 </div>
 <p align="justify">
