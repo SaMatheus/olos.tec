@@ -27,7 +27,7 @@ O <strong>Asteroids Above</strong> é uma aplicação web para encontrar asteroi
 🛸 Tecnologias
 </h2>
 
-<ul>
+<ul style="list-style: none;">
   <li>
     <a href="https://reactjs.org">
      <img alt="reactjs" title="reactjs" src="https://img.shields.io/badge/React-javascript%20library-61dafb?logo=React" />
