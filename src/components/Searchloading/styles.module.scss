@@ -1,0 +1,45 @@
+.searchLoadingContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  .satelite {
+    width: 10rem;
+    transform: translate(-5rem, -.5rem) rotate(195deg);
+    z-index: 1;
+
+    animation: satelite 2s linear infinite;
+  }
+
+  h1 {
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+
+  @keyframes satelite {
+    25% {
+      transform: translateY(-1.5rem) rotate(180deg);
+    }
+    50% {
+      transform: translate(5rem, -.5rem) rotate(165deg);
+    }
+    75% {
+      transform: translateY(-1.5rem) rotate(180deg);
+    }
+    100% {
+      transform: translate(-5rem, -.5rem) rotate(195deg);
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.searchName {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 1rem;
+  margin-bottom: 3.2rem;
+
+  border-bottom: 1px solid var(--red);
+
+  font-size: 1.2rem;
+
+  svg {
+    color: var(--orange);
+    height: 2rem;
+    width: 2rem;
+  }
+}

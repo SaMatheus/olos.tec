@@ -1,7 +1,7 @@
 import React from 'react'
 
 // STYLES
-import styles from '../styles/pages/Home.module.scss'
+import styles from './Home.module.scss'
 
 // ICONS
 import { RiMouseLine } from "react-icons/ri";
@@ -11,13 +11,25 @@ import { BiSearchAlt } from "react-icons/bi";
 import {useState, useEffect, useMemo} from 'react'
 
 // REQUEST
-import request from '../services/requestApi'
+import request from '../../services/requestApi'
 
 // HANDLE DATES
-import { handleDate } from '../utils/handleDate'
+import { handleDate } from './utils/handleDate'
+
+// HANDLE CUT DATA
+import { 
+  cutName,
+  cutDiameterMin,
+  cutDiameterMax,
+  cutDistanceFromEarth } from './utils/handleCutData'
 
 // COMPONENTS
-import Button from '../components/Button'
+import Button from '../../components/Button'
+import Presentation from '../../components/Presentation'
+import Searchloading from '../../components/Searchloading'
+import Searchinput from '../../components/Searchinput'
+import Datepicker from '../../components/Datepicker'
+import Loadingpage from '../../components/Loadingpage'
 
 
 const Home = () => {
@@ -61,35 +73,6 @@ const Home = () => {
 
   const showArray = () => searchName ? searchingFilteredNames : asteroidsArray
 
-  const cutName = (obj) => obj.name.substring(0, 1) === "(" ? obj.name.slice(1, -1) : obj.name
-
-  const cutDiameterMin = (index) => {
-    const diameterMin = 
-      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min)
-        .split('')
-        .indexOf('.')
-    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_min)
-      .slice(0, diameterMin + 4))
-  }
-
-  const cutDiameterMax = (index) => {
-    const diameterMax = 
-      String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max)
-        .split('')
-        .indexOf('.')
-    return (String(asteroidsArray[index].estimated_diameter.kilometers.estimated_diameter_max)
-      .slice(0, diameterMax + 4))
-  }
-
-  const cutDistanceFromEarth = (index) => {
-    const distanceFromEarth = 
-      String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers)
-      .split('')
-      .indexOf('.')
-    return (String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers)
-    .slice(0, distanceFromEarth))
-  }
-
   const hazardousText = "Esse asteroide é potencialmente um perigo para a terra!" 
 
   return (
@@ -98,66 +81,23 @@ const Home = () => {
         {asteroidsArray.length ? (
           <div>
             <div className={styles.headerContainer}>
-              {isSearchLoading &&
-              // TORNAR COMPONENTE LOADING
-                <div className={styles.searchLoadingContainer}>
-                  <img className={styles.satelite} src="/icons/satelite.png" alt="" />
-                  <h1>Contatando a NASA</h1>
-                </div>
-              }
-              {/* TORNAR COMPONENTE PRESENTATION */}
-              <div className={styles.presentationContainer}>
-                <img className={styles.earth} src="icons/earth.png" alt="" />
-                <img className={styles.logo} src="icons/logo.png" alt="" />
-
-                {/* STARS */}
-                <img className={`${styles.star1} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star2} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star3} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star4} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star5} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star6} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star7} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star8} ${styles.star}`} src="icons/star.png" alt="" />
-                <img className={`${styles.star9} ${styles.star}`} src="icons/star.png" alt="" />
-
-                {/* ASTEROIDS */}
-                <img className={`${styles.asteroid1} ${styles.asteroid}`} src="icons/asteroid.png" alt="" />
-                <img className={`${styles.asteroid2} ${styles.asteroid}`} src="icons/asteroid2.png" alt="" />
-                <img className={`${styles.asteroid3} ${styles.asteroid}`} src="icons/asteroid3.png" alt="" />
-              </div>
+              {isSearchLoading && <Searchloading />}
+              <Presentation />
               <div className={styles.filterContainer}>
-                {/* TORNAR COMPONENTE SEARCH INPUT */}
-              <label className={styles.searchName}>
-                <input 
-                  type="text" 
-                  value={searchName} 
-                  onChange={(event) => setSearchName(event.target.value) } 
-                  placeholder="Busque aqui por um asteroide pelo nome"/>
-                <BiSearchAlt />
-              </label>
+               <Searchinput 
+                value={searchName}
+                onChange={(event) => setSearchName(event.target.value)}
+                placeholder="Busque aqui por um asteroide pelo nome"
+              />
               <h3>Busque pela data</h3>
-              {/* TORNAR COMPONENTE DATEPICKER */}
-              <div className={styles.datePicker} >
-                <label>
-                  <p>Data Inicial</p>
-                  <input 
-                    type="date" 
-                    max={inputEndtDate } 
-                    onChange={(event) => setInitialDate(event.target.value)}
-                  />
-                </label>
-                <label>
-                  <p>Data Final</p>
-                  <input 
-                    type="date" 
-                    min={initialDate} 
-                    max={inputEndtDate} 
-                    onChange={(event) => setFinalDate(event.target.value)}
-                    disabled={!initialDate && true}
-                  />
-                </label>
-              </div>
+              <Datepicker 
+                dataInicialMax={inputEndtDate} 
+                dataInicialOnChange={(event) => setInitialDate(event.target.value)}
+                dataFinalMin={initialDate}
+                dataFinalMax={inputEndtDate}
+                dataFinalOnChange={(event) => setFinalDate(event.target.value)}
+                dataFinalDisabled={!initialDate}
+              />
               {initialDate
                 ? <h6>A data final deve ser até 7 dias após a data inicial.</h6> 
                 : <h6>A busca inicial é feita a partir da sua data atual.</h6>}
@@ -202,16 +142,16 @@ const Home = () => {
                         </td>
                         <td>
                           <span>
-                            {cutDiameterMin(index)} <strong>Km</strong>
+                            {cutDiameterMin(obj)} <strong>Km</strong>
                           </span>
                         </td>
                         <td>
                           <span>
-                            {cutDiameterMax(index)} <strong>Km</strong>
+                            {cutDiameterMax(obj)} <strong>Km</strong>
                           </span>
                         </td>
                         <td>
-                          <p>{cutDistanceFromEarth(index)} <strong>Km</strong></p>
+                          <p>{cutDistanceFromEarth(obj)} <strong>Km</strong></p>
                         </td>
                         <td>
                           {/* COMPOENTENTIZAR */}
@@ -241,14 +181,7 @@ const Home = () => {
               </table>
             </div>
           </div>
-        ) : (
-          // COMPONENTIZAR
-          <div className={styles.loadingContainer}>
-            <div className={styles.icon}>
-            </div>
-            <h1>Buscando asteroides</h1>
-          </div>
-        )}
+        ) : ( <Loadingpage /> )}
       </div>
     </>
   )
