@@ -68,7 +68,7 @@ Essa é a tela inicial do projeto, onde encontramos além dessa apresentação M
   </a>
 </div>
 <p align="justify">
-Aqui vemos as duas telas de carregamento. À esquerda o carregamento inicial quando a primeira chamada à API é feita, e à direita o carregamento ao realizar uma busca por data.
+Aqui vemos as duas telas de carregamento. À esquerda o carregamento inicial quando a primeira chamada à API é feita, e à direita o carregamento de qualquer modificação após a inicialização da aplicação.
 </p>
 
 <br>
