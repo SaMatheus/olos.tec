@@ -1,6 +1,6 @@
 <div>
   <a href="">
-    <img style="object-fit: cover" title="Visualizar aplicação" width="100%" height="600" src="README/banner.png">
+    <img style="object-fit: cover" title="Visualizar aplicação" width="100%" src="README/banner.png">
   </a>
 </div>
 
