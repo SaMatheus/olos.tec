@@ -7,6 +7,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from '../pages/home'
 
 const Routes = () => {
+  
   return (
     <BrowserRouter>
       <Switch>

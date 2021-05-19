@@ -14,16 +14,13 @@ html {
     width: 4px;
     height: 6px;
   }
-
   &::-webkit-scrollbar-track {
     margin: 4px 0;
   }
-
   &::-webkit-scrollbar-thumb {
     background: var(--orange);
     border-radius: 1rem;
   }
-
   &::-webkit-scrollbar-corner {
     background: transparent;
   }

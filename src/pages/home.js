@@ -44,8 +44,8 @@ const Home = () => {
       asteroidsArr.push(asteroidByDays[keys[i]])
     }
 
-    const mergeAsteroids = [].concat.apply([], asteroidsArr)
-    setAsteroidsArray(mergeAsteroids.reverse())
+    const mergeAsteroids = [].concat.apply([], asteroidsArr).reverse()
+    setAsteroidsArray(mergeAsteroids)
   }
 
   const getNasaApi = async(startDate, endDate) => {
@@ -54,7 +54,8 @@ const Home = () => {
       .get(`feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
       .then((response) => {
         setIsSearchLoading(false)
-        mergeAsteroidsByMultipleDays(response.data.near_earth_objects)
+        const json = response.data.near_earth_objects
+        mergeAsteroidsByMultipleDays(json)
       })
       .catch((error) => console.log(error))
   }
@@ -88,10 +89,6 @@ const Home = () => {
     const distanceFromEarth = 
       String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).split('').indexOf('.')
     return (String(asteroidsArray[index].close_approach_data[0].miss_distance.kilometers).slice(0, distanceFromEarth))
-  }
-
-  const disabledSearchButton = () => {
-    return finalDate.slice(-2) - initialDate.slice(-2) > 7 
   }
 
   return (
@@ -164,7 +161,9 @@ const Home = () => {
                   setInitialDate(null)
                   setFinalDate(null)
                 }}>Limpar</Button>
-                <Button onClick={() => getNasaApi(initialDate, finalDate)} disabled={finalDate.slice(-2) - initialDate.slice(-2) > 7 }>Buscar</Button>
+                <Button 
+                  onClick={() => getNasaApi(initialDate, finalDate)}
+                  disabled={finalDate.slice(-2) - initialDate.slice(-2) > 7 }>Buscar</Button>
               </div>
             </div>
             </div>
