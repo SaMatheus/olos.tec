@@ -102,16 +102,16 @@ git clone https://github.com/SaMatheus/olos.tec && cd olos.tec
 yarn install
 ```
 
-> 📝 Rodando Aplicação
-
-```shell
-yarn start
-```
-
 > 📝 Buildando para Produção
 
 ```shell
 yarn build
+```
+
+> 📝 Rodando Aplicação
+
+```shell
+yarn start
 ```
 
 > Pronto 🎉 se tudo ocorreu conforme o esperado 😁 a aplicação estará
