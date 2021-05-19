@@ -1,8 +1,8 @@
-<p align="center" width="100%">
-  <a href="" width="100%">
-    <img style="object-fit: cover" title="Visualizar aplicação" width="25%" src="README/banner.png">
+<div>
+  <a href="">
+    <img style="object-fit: cover" title="Visualizar aplicação" width="100%" height="600" src="README/banner.png">
   </a>
-</p>
+</div>
 
 <h4 align="center">
 
