@@ -292,7 +292,7 @@
     color: white;
     font-size: 5rem;
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 15rem;
     right: 50%;
     transform: translateX(50%);
     opacity: 0;
@@ -302,13 +302,13 @@
 
     @keyframes scroll {
       10% {
-        bottom: 1.5rem;
+        bottom: 15rem;
       }
       50% {
-        bottom: .3rem;
+        bottom: 13.5rem;
       }
       100% {
-        bottom: 1.5rem;
+        bottom: 15rem;
       }
     }
 
