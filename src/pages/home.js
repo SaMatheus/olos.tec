@@ -46,7 +46,7 @@ const Home = () => {
   const getNasaApi = async(startDate, endDate) => {
     setIsSearchLoading(true)
     const json = await request.getAsteroids(startDate, endDate)
-    await setIsSearchLoading(false)
+    // await setIsSearchLoading(false)
     await mergeAsteroidsByMultipleDays(json)
   }
 

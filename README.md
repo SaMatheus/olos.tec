@@ -53,15 +53,33 @@ O <strong>Asteroids Above</strong> é uma aplicação web para encontrar asteroi
 <img title="asteroids above" src="README/project.png">
 </a>
 <h6 align="center">Clique na imagem para visualizar a aplicação</h6>
+
+<p align="justify">
+Essa é a tela inicial do projeto, onde encontramos além dessa apresentação MARAVILINDA, também contamos com uma caixa no canto direito onde é possível filtrar a lista de asteroides pelo nome e por uma data especifica.
+</p>
+<br>
+
+<div styles="display: flex; gap: 16px; align-items: center;">
+  <a href="">
+    <img title="asteroids above" width="50%" src="README/carregamento1.png">
+  </a>
+  <a href="">
+    <img title="asteroids above" width="50%" src="README/carregamento2.png">
+  </a>
+</div>
+<p align="justify">
+Aqui vemos as duas telas de carregamento. À esquerda o carregamento inicial quando a primeira chamada à API é feita, e à direita o carregamento ao realizar uma busca por data.
+</p>
+
 <br>
 
 <h2 id="roadmap">
 :world_map: RoadMap
 </h2>
-<br>
 
 <p align="justify">
-Para me organizar e concluir o projeto no timing eu utilizei o <a href="https://www.notion.so"><strong>Notion</strong></a> e você pode conferir quais foram os passos a passos que segui nesse link: <a href="https://www.notion.so/Roadmap-Ol-s-Tecnologia-643bf13a3b904604aedca7834fb4a687">Meu Roadmap</a>
+Para me organizar e concluir o projeto no timing utilizei o <a href="https://www.notion.so"><strong>Notion</strong></a> e você pode conferir qual foi o passo a passo que segui clicando <a href="https://www.notion.so/Roadmap-Ol-s-Tecnologia-643bf13a3b904604aedca7834fb4a687">Aqui!</a>
+</p>
 <br>
 
 <h2 id="local">
